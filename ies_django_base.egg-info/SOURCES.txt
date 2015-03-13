@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+setup.py
+ies-base/__init__.py
+ies-base/admin.py
+ies-base/filters.py
+ies-base/models.py
+ies-base/serializers.py
+ies-base/tests.py
+ies-base/views.py
+ies_django_base.egg-info/PKG-INFO
+ies_django_base.egg-info/SOURCES.txt
+ies_django_base.egg-info/dependency_links.txt
+ies_django_base.egg-info/top_level.txt
