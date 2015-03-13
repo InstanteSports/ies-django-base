@@ -10,7 +10,7 @@ Description: =====
         Instant eSports Base
         =====
         
-        ies-base is a simple Django app that combines some basic functionality.
+        ies_base is a simple Django app that combines some basic functionality.
         
         Detailed documentation is in the "docs" directory.
         
@@ -21,8 +21,9 @@ Description: =====
         
             INSTALLED_APPS = (
                 ...
-                'ies-base',
+                'ies_base',
             )
+        
 Platform: UNKNOWN
 Classifier: Environment :: Web Environment
 Classifier: Framework :: Django

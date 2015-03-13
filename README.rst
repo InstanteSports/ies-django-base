@@ -2,7 +2,7 @@
 Instant eSports Base
 =====
 
-ies-base is a simple Django app that combines some basic functionality.
+ies_base is a simple Django app that combines some basic functionality.
 
 Detailed documentation is in the "docs" directory.
 
@@ -13,5 +13,5 @@ Quick start
 
     INSTALLED_APPS = (
         ...
-        'ies-base',
+        'ies_base',
     )

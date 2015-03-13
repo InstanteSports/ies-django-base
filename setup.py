@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='ies-django-base',
     version='0.1',
-    packages=['ies-base'],
+    packages=['ies_base'],
     include_package_data=True,
     license='BSD License',  # example license
     description='Base apps for Instant eSports django use.',
