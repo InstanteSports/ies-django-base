@@ -32,8 +32,21 @@ class TaggableModel(models.Model):
 
     def get_tags(self):
         """
-        Takes a model, and returns its tags. MUST be implemented to take advantage of automatic tagging
+        Takes an object, and returns its tags. MUST be implemented to take advantage of automatic tagging
         :return: Tuple with 2 elements, Element 0 is the name of the tag and Element 1 is a List/Tuple with strings of
         possible tags
+        """
+        raise NotImplementedError
+
+class FollowableModel(models.Model):
+    followable = models.BooleanField(default=True)
+
+    class Meta:
+        abstract = True
+
+    def get_following_information(self):
+        """
+        Takes an object and returns the information for following that item
+        :return:
         """
         raise NotImplementedError
