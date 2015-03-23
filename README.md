@@ -33,7 +33,9 @@ def parse_player(ign):
 ```
 
 This will create a player, with a single ign field, and a "manual ign" boolean
-flag. When running an automatic parse, use the auto_save() function rather than
+flag. If this flag is True, then the auto_save function will avoid overwriting 
+the content of the field.
+When running an automatic parse, use the auto_save() function rather than
 the save function.
 
 ###ListFilter
