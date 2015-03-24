@@ -38,4 +38,4 @@ class AllFollowablesView(APIView):
                         out_list.append(f.save())
                     else:
                         print f.errors
-        return Response(TagSerializer(out_list, many=True).data)
+        return Response(FollowableSerializer(out_list, many=True).data)
