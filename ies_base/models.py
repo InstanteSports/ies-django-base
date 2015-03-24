@@ -81,6 +81,7 @@ class FollowableModel(models.Model):
             "type": Integer based on ENUM above
             "name": Display name
             "object_id": ID of the object on the other end
+            "thumbnail_url": Absolute URL of the thumbnail for this followable
         }
         """
         raise NotImplementedError

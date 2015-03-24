@@ -18,11 +18,12 @@ class TagSerializer(serializers.Serializer):
 
 
 class Followable(object):
-    def __init__(self, name, type, game, object_id):
+    def __init__(self, name, type, game, object_id, thumbnail_url=""):
         self.name = name
         self.type = type
         self.game = game
         self.object_id = object_id
+        self.thumbnail_url = thumbnail_url
 
 
 class FollowableSerializer(serializers.Serializer):
@@ -30,6 +31,7 @@ class FollowableSerializer(serializers.Serializer):
     type = serializers.IntegerField()
     game = serializers.IntegerField()
     object_id = serializers.IntegerField()
+    thumbnail_url = serializers.CharField(allow_blank=True, allow_null=True)
 
     def create(self, validated_data):
         return Followable(**validated_data)
