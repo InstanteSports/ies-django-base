@@ -15,3 +15,21 @@ class TagSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         return Tag(**validated_data)
+
+
+class Followable(object):
+    def __init__(self, name, type, game, object_id):
+        self.name = name
+        self.type = type
+        self.game = game
+        self.object_id = object_id
+
+
+class FollowableSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    type = serializers.IntegerField()
+    game = serializers.IntegerField()
+    object_id = serializers.IntegerField()
+
+    def create(self, validated_data):
+        return Followable(**validated_data)

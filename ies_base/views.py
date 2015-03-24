@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from models import TaggableModel
+from models import TaggableModel, FollowableModel
 from django.contrib.contenttypes.models import ContentType
-from serializers import TagSerializer
+from serializers import TagSerializer, FollowableSerializer
 
 # Create your views here.
 class AllTagsView(APIView):
@@ -21,4 +21,21 @@ class AllTagsView(APIView):
                         out_list.append(t.save())
                     else:
                         print t.errors
+        return Response(TagSerializer(out_list, many=True).data)
+
+class AllFollowablesView(APIView):
+    """
+    Returns a list of all followables in this project
+    """
+    def get(self, request, *args, **kwargs):
+        out_list = []
+        for ct in ContentType.objects.all():
+            model = ct.model_class()
+            if model and isinstance(model(), FollowableModel):
+                for item in model.objects.all():
+                    f = FollowableSerializer(data=item.get_following_information())
+                    if f.is_valid():
+                        out_list.append(f.save())
+                    else:
+                        print f.errors
         return Response(TagSerializer(out_list, many=True).data)

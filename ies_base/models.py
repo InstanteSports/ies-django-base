@@ -33,8 +33,12 @@ class TaggableModel(models.Model):
     def get_tags(self):
         """
         Takes an object, and returns its tags. MUST be implemented to take advantage of automatic tagging
-        :return: Tuple with 2 elements, Element 0 is the name of the tag and Element 1 is a List/Tuple with strings of
-        possible tags
+        :return:
+        {
+            "name": Name of the tag
+            "related_tags": Related things to tag
+            "equivalent_names": Names that are the same (TSM = Team Solo Mid)
+        }
         """
         raise NotImplementedError
 
@@ -47,6 +51,25 @@ class FollowableModel(models.Model):
     def get_following_information(self):
         """
         Takes an object and returns the information for following that item
+
+        GAME_ENUM:
+            NONE = 0
+            LEAGUE_OF_LEGENDS = 1
+            DOTA2 = 2
+
+        TYPE_ENUM:
+            PLAYER = 0
+            TEAM = 1
+            ORGANIZATION = 2
+            SERIES = 3
+            TOURNAMENT = 4
+
         :return:
+        {
+            "game": INTEGER based on ENUM above
+            "type": Integer based on ENUM above
+            "name": Display name
+            "object_id": ID of the object on the other end
+        }
         """
         raise NotImplementedError
