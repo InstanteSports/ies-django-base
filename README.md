@@ -64,14 +64,15 @@ TYPE_ENUM:
 - SERIES = 3
 - TOURNAMENT = 4
 
-:return:  
-{  
+```
+return {  
     "game": INTEGER based on ENUM above  
     "type": Integer based on ENUM above  
     "name": Display name  
     "object_id": ID of the object on the other end  
     "thumbnail_url": Absolute URL of the thumbnail for this followable  
-}  
+} 
+```
 
 
 ```python
@@ -104,12 +105,14 @@ the abstract method get_tags().
 
 get_tags -
 Takes an object, and returns its tags. MUST be implemented to take advantage of automatic tagging
-:return:
-{
+
+```
+return {
     "name": Name of the tag
     "related_tags": Related things to tag (list)
     "equivalent_names": Names that are the same (TSM = Team Solo Mid) (list)
 }
+```
 
 
 ```python
