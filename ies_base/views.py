@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from models import TaggableModel, FollowableModel
 from django.contrib.contenttypes.models import ContentType
 from serializers import TagSerializer, FollowableSerializer
+
 
 # Create your views here.
 class AllTagsView(APIView):
