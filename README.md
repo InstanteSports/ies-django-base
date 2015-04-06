@@ -53,25 +53,25 @@ get_following_information -
 Takes an object and returns the information for following that item
 
 GAME_ENUM:
-    NONE = 0
-    LEAGUE_OF_LEGENDS = 1
-    DOTA2 = 2
+- NONE = 0
+- LEAGUE_OF_LEGENDS = 1
+- DOTA2 = 2
 
 TYPE_ENUM:
-    PLAYER = 0
-    TEAM = 1
-    ORGANIZATION = 2
-    SERIES = 3
-    TOURNAMENT = 4
+- PLAYER = 0
+- TEAM = 1
+- ORGANIZATION = 2
+- SERIES = 3
+- TOURNAMENT = 4
 
-:return:
-{
-    "game": INTEGER based on ENUM above
-    "type": Integer based on ENUM above
-    "name": Display name
-    "object_id": ID of the object on the other end
-    "thumbnail_url": Absolute URL of the thumbnail for this followable
-}
+:return:  
+{  
+    "game": INTEGER based on ENUM above  
+    "type": Integer based on ENUM above  
+    "name": Display name  
+    "object_id": ID of the object on the other end  
+    "thumbnail_url": Absolute URL of the thumbnail for this followable  
+}  
 
 
 ```python
