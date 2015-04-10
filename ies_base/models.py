@@ -10,12 +10,13 @@ class ManualUpdateModel(models.Model):
     def auto_save(self):
         updated_fields = []
 
-        if VERSION < "1.8":
+        if VERSION < (1, 8 ,0, '', 0):
             field_iterator_function = type(self)._meta.get_fields_with_model
         else:
             field_iterator_function = type(self)._meta.get_fields
 
         for field in field_iterator_function():
+            print field
             if (not field.name.startswith("m_") and
                     not isinstance(field, ManyToOneRel) and
                     not isinstance(field, AutoField)):
