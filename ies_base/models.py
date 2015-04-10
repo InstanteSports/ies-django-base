@@ -10,21 +10,24 @@ class ManualUpdateModel(models.Model):
     def auto_save(self):
         updated_fields = []
 
-        if VERSION < (1, 8 ,0, '', 0):
-            field_iterator_function = type(self)._meta.get_fields_with_model
-        else:
-            field_iterator_function = type(self)._meta.get_fields
-
-        for field in field_iterator_function():
-            print field
-            if (not field.name.startswith("m_") and
-                    not isinstance(field, ManyToOneRel) and
-                    not isinstance(field, AutoField)):
-                try:
-                    if not getattr(self, "m_" + field.name):
+        if VERSION >= (1, 8 ,0, '', 0):
+            for field in type(self)._meta.get_fields():
+                if (not field.name.startswith("m_") and
+                        not isinstance(field, ManyToOneRel) and
+                        not isinstance(field, AutoField)):
+                    try:
+                        if not getattr(self, "m_" + field.name):
+                            updated_fields.append(field.name)
+                    except AttributeError:
                         updated_fields.append(field.name)
-                except AttributeError:
-                    updated_fields.append(field.name)
+        else:
+            for field in type(self)._meta.get_all_field_names():
+                if not field.startswith("m_"):
+                    try:
+                        if not getattr(self, "m_" + field):
+                            updated_fields.append(field)
+                    except AttributeError:
+                        updated_fields.append(field)
         try:
             return self.save(update_fields=updated_fields)
         except ValueError:
