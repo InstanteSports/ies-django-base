@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields.related import ManyToOneRel, AutoField
-
+from django import VERSION
 
 # Create your models here.
 class ManualUpdateModel(models.Model):
@@ -9,7 +9,13 @@ class ManualUpdateModel(models.Model):
 
     def auto_save(self):
         updated_fields = []
-        for field in type(self)._meta.get_fields():
+
+        if VERSION < "1.8":
+            field_iterator_function = type(self)._meta.get_fields_with_model
+        else:
+            field_iterator_function = type(self)._meta.get_fields
+
+        for field in field_iterator_function():
             if (not field.name.startswith("m_") and
                     not isinstance(field, ManyToOneRel) and
                     not isinstance(field, AutoField)):
