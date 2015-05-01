@@ -21,14 +21,19 @@ class ManualUpdateModel(models.Model):
                     except AttributeError:
                         updated_fields.append(field.name)
         else:
-            for field in type(self)._meta.get_all_field_names():
-                if not field.startswith("m_"):
+            for field in type(self)._meta.fields:
+                if not field.name.startswith("m_") and isinstance(field,
+                                                                models.ManyToManyField):
                     try:
                         if not getattr(self, "m_" + field):
-                            updated_fields.append(field)
-                    except AttributeError:
-                        updated_fields.append(field)
+                            updated_fields.append(field.name)
+                        else:
+                            print getattr(self, "m_" + field.name)
+                            print field.name
+                    except AttributeError as e:
+                        updated_fields.append(field.name)
         try:
+            print updated_fields
             return self.save(update_fields=updated_fields)
         except ValueError:
             return self.save()
