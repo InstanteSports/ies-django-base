@@ -22,11 +22,14 @@ class ManualUpdateModel(models.Model):
                         updated_fields.append(field.name)
         else:
             for field in type(self)._meta.fields:
-                if not field.name.startswith("m_") and not isinstance(field,
-                                                                models.ManyToManyField):
+                if (not field.name.startswith("m_") and
+                        not isinstance(field, models.ManyToManyField) and
+                        not isinstance(field, models.AutoField)):
                     try:
                         if not getattr(self, "m_" + field.name):
                             updated_fields.append(field.name)
+                        else:
+                            print "m_" + field.name
                     except AttributeError as e:
                         updated_fields.append(field.name)
         try:
