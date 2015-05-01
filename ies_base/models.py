@@ -28,8 +28,6 @@ class ManualUpdateModel(models.Model):
                     try:
                         if not getattr(self, "m_" + field.name):
                             updated_fields.append(field.name)
-                        else:
-                            print "m_" + field.name
                     except AttributeError as e:
                         updated_fields.append(field.name)
         try:
