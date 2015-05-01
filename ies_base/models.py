@@ -25,7 +25,7 @@ class ManualUpdateModel(models.Model):
                 if not field.name.startswith("m_") and isinstance(field,
                                                                 models.ManyToManyField):
                     try:
-                        if not getattr(self, "m_" + field):
+                        if not getattr(self, "m_" + field.name):
                             updated_fields.append(field.name)
                         else:
                             print getattr(self, "m_" + field.name)
