@@ -9,6 +9,10 @@ class ListFilter(Filter):
 
 
 class MultipleFieldListFilter(Filter):
+    def __init__(self, combiner="OR", *args, **kwargs):
+        self.combiner = combiner
+        super(MultipleFieldListFilter, self).__init__(*args, **kwargs)
+
     def filter(self, qs, value):
         value = value.split(u",")
         if not value:
@@ -16,5 +20,8 @@ class MultipleFieldListFilter(Filter):
         q = Q()
         for name in self.name.split(','):
             for v in value:
-                q |= Q(**{name: v})
+                if self.combiner == "OR":
+                    q |= Q(**{name: v})
+                else:
+                    q &= Q(**{name: v})
         return qs.filter(q).distinct()
