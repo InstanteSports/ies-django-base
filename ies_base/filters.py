@@ -17,11 +17,14 @@ class MultipleFieldListFilter(Filter):
         value = value.split(u",")
         if not value:
             return qs
-        q = Q()
+        q_list = []
         for name in self.name.split(','):
+            q = Q()
             for v in value:
-                if self.combiner == "OR":
-                    q |= Q(**{name: v})
-                else:
-                    q &= Q(**{name: v})
+                q |= Q(**{name: v})
+            q_list.append(q)
+        if self.combiner == "OR":
+            q = reduce(lambda a, b: a | b, q_list)
+        else:
+            q = reduce(lambda a, b: a & b, q_list)
         return qs.filter(q).distinct()
