@@ -68,6 +68,21 @@ class FollowableModel(models.Model):
     LEAGUE_OF_LEGENDS = 1
     DOTA2 = 2
 
+    TYPE_CHOICES = (
+        (PLAYER, "PLAYER"),
+        (TEAM, "TEAM"),
+        (ORGANIZATION, "ORGANIZATION"),
+        (SERIES, "SERIES"),
+        (TOURNAMENT, "TOURNAMENT"),
+        (GAME_CHARACTER, "GAME_CHARACTER")
+    )
+
+    GAME_CHOICES = (
+        (NONE, "NONE"),
+        (LEAGUE_OF_LEGENDS, "LEAGUE OF LEGENDS"),
+        (DOTA2, "DOTA2"),
+    )
+
     followable = models.BooleanField(default=True)
 
     class Meta:
