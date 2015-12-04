@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.fields.related import ManyToOneRel, AutoField
 from django import VERSION
 
+
 # Create your models here.
 class ManualUpdateModel(models.Model):
     class Meta:
@@ -54,17 +55,18 @@ class TaggableModel(models.Model):
         """
         raise NotImplementedError
 
+
 class FollowableModel(models.Model):
     PLAYER = 0
     TEAM = 1
     ORGANIZATION = 2
     SERIES = 3
     TOURNAMENT = 4
+    GAME_CHARACTER = 5
 
     NONE = 0
     LEAGUE_OF_LEGENDS = 1
     DOTA2 = 2
-
 
     followable = models.BooleanField(default=True)
 
