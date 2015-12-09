@@ -24,7 +24,6 @@ class Followable(object):
         self.game = game
         self.object_id = object_id
         self.thumbnail_url = thumbnail_url
-        self.old_object_id = old_object_id
 
 
 class FollowableSerializer(serializers.Serializer):
@@ -32,7 +31,6 @@ class FollowableSerializer(serializers.Serializer):
     type = serializers.IntegerField()
     game = serializers.IntegerField()
     object_id = serializers.IntegerField()
-    old_object_id = serializers.IntegerField(allow_null=True)
     thumbnail_url = serializers.CharField(allow_blank=True, allow_null=True)
 
     def create(self, validated_data):
