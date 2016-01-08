@@ -35,6 +35,7 @@ class FollowableSerializer(serializers.Serializer):
     object_id = serializers.IntegerField()
     default_color = serializers.CharField(allow_null=True, allow_blank=True, required=False)
     thumbnail_url = serializers.CharField(allow_blank=True, allow_null=True)
+    extra = serializers.DictField(required=False, allow_null=True)
 
     def create(self, validated_data):
         return Followable(**validated_data)
