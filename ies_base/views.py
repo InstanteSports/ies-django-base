@@ -15,7 +15,7 @@ class AllTagsView(APIView):
         for ct in ContentType.objects.all():
             model = ct.model_class()
             if model and isinstance(model(), TaggableModel):
-                for item in model.objects.all():
+                for item in model.objects.filter(taggable=True):
                     t = TagSerializer(data=item.get_tags())
                     if t.is_valid():
                         out_list.append(t.save())
@@ -32,7 +32,7 @@ class AllFollowablesView(APIView):
         for ct in ContentType.objects.all():
             model = ct.model_class()
             if model and isinstance(model(), FollowableModel):
-                for item in model.objects.all():
+                for item in model.objects.filter(followable=True):
                     f = FollowableSerializer(data=item.get_following_information())
                     if f.is_valid():
                         out_list.append(f.save())
