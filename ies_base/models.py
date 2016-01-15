@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.fields.related import ManyToOneRel, AutoField
+from django.db.models.fields.related import ManyToOneRel, AutoField, ManyToManyField, RelatedField
 from django import VERSION
 
 
@@ -15,7 +15,9 @@ class ManualUpdateModel(models.Model):
             for field in type(self)._meta.get_fields():
                 if (not field.name.startswith("m_") and
                         not isinstance(field, ManyToOneRel) and
-                        not isinstance(field, AutoField)):
+                        not isinstance(field, AutoField) and
+                        not isinstance(field, ManyToManyField) and
+                        not isinstance(field, RelatedField)):
                     try:
                         if not getattr(self, "m_" + field.name):
                             updated_fields.append(field.name)
@@ -33,7 +35,7 @@ class ManualUpdateModel(models.Model):
                         updated_fields.append(field.name)
         try:
             return self.save(update_fields=updated_fields)
-        except ValueError:
+        except ValueError as e:
             return self.save()
 
 
