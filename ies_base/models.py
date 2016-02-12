@@ -8,7 +8,7 @@ class ManualUpdateModel(models.Model):
     class Meta:
         abstract = True
 
-    def auto_save(self):
+    def auto_save(self, force_insert=False, force_update=False):
         updated_fields = []
 
         if VERSION >= (1, 8 ,0, '', 0):
@@ -16,8 +16,7 @@ class ManualUpdateModel(models.Model):
                 if (not field.name.startswith("m_") and
                         not isinstance(field, ManyToOneRel) and
                         not isinstance(field, AutoField) and
-                        not isinstance(field, ManyToManyField) and
-                        not isinstance(field, RelatedField)):
+                        not isinstance(field, ManyToManyField)):
                     try:
                         if not getattr(self, "m_" + field.name):
                             updated_fields.append(field.name)
@@ -34,9 +33,10 @@ class ManualUpdateModel(models.Model):
                     except AttributeError as e:
                         updated_fields.append(field.name)
         try:
-            return self.save(update_fields=updated_fields)
+            return self.save(update_fields=updated_fields, force_insert=force_insert, force_update=force_update)
         except ValueError as e:
-            return self.save()
+            print "Shit is " + str(e)
+            return self.save(force_insert=force_insert, force_update=force_update)
 
 
 class TaggableModel(models.Model):
