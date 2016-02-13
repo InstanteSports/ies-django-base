@@ -35,7 +35,6 @@ class ManualUpdateModel(models.Model):
         try:
             return self.save(update_fields=updated_fields, force_insert=force_insert, force_update=force_update)
         except ValueError as e:
-            print "Shit is " + str(e)
             return self.save(force_insert=force_insert, force_update=force_update)
 
 
@@ -69,6 +68,8 @@ class FollowableModel(models.Model):
     NONE = 0
     LEAGUE_OF_LEGENDS = 1
     DOTA2 = 2
+    HEARTHSTONE = 3
+    CSGO = 4
 
     TYPE_CHOICES = (
         (PLAYER, "PLAYER"),
@@ -83,6 +84,8 @@ class FollowableModel(models.Model):
         (NONE, "NONE"),
         (LEAGUE_OF_LEGENDS, "LEAGUE OF LEGENDS"),
         (DOTA2, "DOTA2"),
+        (HEARTHSTONE, "HEARTHSTONE"),
+        (CSGO, "CS:GO")
     )
 
     followable = models.BooleanField(default=True)
