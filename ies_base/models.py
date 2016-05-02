@@ -78,8 +78,8 @@ class FollowableModel(models.Model):
         (ORGANIZATION, "ORGANIZATION"),
         (SERIES, "SERIES"),
         (TOURNAMENT, "TOURNAMENT"),
-        (GAME_CHARACTER, "GAME_CHARACTER")
-        (REGION, "REGION")
+        (GAME_CHARACTER, "GAME_CHARACTER"),
+        (REGION, "REGION"),
     )
 
     GAME_CHOICES = (
