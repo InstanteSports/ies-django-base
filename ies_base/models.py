@@ -64,6 +64,7 @@ class FollowableModel(models.Model):
     SERIES = 3
     TOURNAMENT = 4
     GAME_CHARACTER = 5
+    REGION = 6
 
     NONE = 0
     LEAGUE_OF_LEGENDS = 1
@@ -78,6 +79,7 @@ class FollowableModel(models.Model):
         (SERIES, "SERIES"),
         (TOURNAMENT, "TOURNAMENT"),
         (GAME_CHARACTER, "GAME_CHARACTER")
+        (REGION, "REGION")
     )
 
     GAME_CHOICES = (
