@@ -1,5 +1,6 @@
 from django.db import models
-from django.db.models.fields.related import ManyToOneRel, AutoField, ManyToManyField, RelatedField
+from django.db.models.fields.related import ManyToOneRel, ManyToManyField, RelatedField
+from django.db.models.fields import AutoField
 from django import VERSION
 
 
