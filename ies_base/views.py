@@ -23,6 +23,7 @@ class AllTagsView(APIView):
                         print t.errors
         return Response(TagSerializer(out_list, many=True).data)
 
+
 class AllFollowablesView(APIView):
     """
     Returns a list of all followables in this project

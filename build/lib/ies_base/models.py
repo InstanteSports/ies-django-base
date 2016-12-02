@@ -1,5 +1,6 @@
 from django.db import models
-from django.db.models.fields.related import ManyToOneRel, AutoField
+from django.db.models.fields.related import ManyToOneRel
+from django.db.models.fields import AutoField
 
 
 # Create your models here.
