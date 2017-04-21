@@ -1,6 +1,7 @@
 from django_filters import Filter
 from django_filters.fields import Lookup
 from django.db.models import Q
+from functools import reduce
 
 
 class ListFilter(Filter):
